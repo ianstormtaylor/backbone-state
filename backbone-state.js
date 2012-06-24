@@ -1,10 +1,12 @@
-// Backbone State Plugin
-// by Ian Storm Taylor - ianstormtaylor.com
-// https://github.com/ianstormtaylor/backbone-state
+//     Backbone State 0.0.1
+//
+//     by Ian Storm Taylor
+//     https://github.com/ianstormtaylor/backbone-state
 
 ;(function (Backbone) {
 /*global Backbone, _ */
 
+// Extending the original Backbone.View to support inheritance.
 var _View = Backbone.View;
 Backbone.View = _View.extend({
 
