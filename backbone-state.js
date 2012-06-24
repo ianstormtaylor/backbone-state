@@ -51,7 +51,7 @@ Backbone.View = _View.extend({
     // If jQuery-State plugin: use it to reflect the state in the DOM.
     if (this.$el.state) this.$el.state(state, value);
 
-    // Trigger two events, so that you can either listen for `change:state` and receive the state's names and its value or listen for `change:state:hidden` and just receive its value.
+    // Trigger two events, so that you can either listen for `change:state` and receive the state's name and value or listen for `change:state:hidden` and just receive its value.
     this.trigger('change:state:'+state, this, value);
     this.trigger('change:state', this, state, value);
   },
