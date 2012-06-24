@@ -1,6 +1,9 @@
-/*global Backbone, _ */
+// Backbone State Plugin
+// by Ian Storm Taylor - ianstormtaylor.com
+// https://github.com/ianstormtaylor/backbone-state
 
 ;(function (Backbone) {
+/*global Backbone, _ */
 
 var _View = Backbone.View;
 Backbone.View = _View.extend({
