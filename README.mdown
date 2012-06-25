@@ -80,5 +80,5 @@ Unless you choose a different default, all states default to `false` when a view
 
 Whenever a state is changed, two events are fired that you can listen for:
 
-* `change:state:STATE_NAME` which passes along `this, stateValue`
-* `change:state` which passes along `this, stateName, stateValue`
+**change:state:STATE_NAME** which passes along `this, stateValue`
+**change:state** which passes along `this, stateName, stateValue`
