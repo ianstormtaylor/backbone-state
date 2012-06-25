@@ -2,7 +2,7 @@
 
 A mixin for Backbone that gives Views an easy way to keep track of their states.
 
-### Calling the mixin
+## Calling the mixin
 
 Backbone State will be available under `Backbone.mixin.state` when not using AMD, or it will just return the mixin itself if you are using AMD.
 
@@ -33,7 +33,7 @@ var BaseView = Backbone.View.extend({
 Backbone.mixin.state.call(BaseView);
 ```
 
-### Using the mixin
+## Using the mixin
 
 Your views will be able to keep track of whatever states you define:
 
@@ -58,7 +58,7 @@ dropdown.getState('hidden');  // true
 Unless you choose a different default, all states default to `false` when a view is freshly initialized.
 
 
-### Methods
+## Methods
 
 **getState** _(stateName)_
 > returns the state's current value.
@@ -76,7 +76,7 @@ Unless you choose a different default, all states default to `false` when a view
 > same as `onState`, but will only ever be called-back once before the handler is unbound.
 
 
-### Events
+## Events
 
 Whenever a state is changed, two events are fired that you can listen for:
 
