@@ -1,1 +1,64 @@
-Something.
+# Backbone State
+
+A mixin for Backbone that gives Views an easy way to keep track of their states.
+
+### Calling the mixin
+
+Backbone State will be available under `Backbone.mixin.state` when not using AMD, or it will just return the mixin itself if you are using AMD.
+
+To use the Backbone State mixin, you need to mix it into whichever Backbone class you'd like to have states:
+
+    Backbone.mixin.state.call(Backbone.View);
+
+More likely, you'll want to mix it into your BaseView:
+
+    Backbone.mixin.state.call(BaseView);
+
+You can also pass in the states you want up front:
+
+    Backbone.mixin.state.call(BaseView, ['rendered', 'hidden']);
+
+Or you can define the states you want when you extend the view:
+
+    var BaseView = Backbone.View.extend({
+        states : ['rendered', 'hidden'];
+    });
+    Backbone.mixin.inheritance.call(BaseView);
+
+
+### Using the mixin
+
+Your views will be able to keep track of whatever states you define:
+
+    var Dropdown = Backbone.View.extend({
+        states : ['rendered', 'hidden', 'expanded']
+    });
+
+You can then easily get, set, toggle and listen to your states. You can also set default state values, or set initial state values for an instance by passing them into `options` when defining or creating the view:
+
+    var dropdown = new Dropdown({
+        hidden : true
+    });
+
+    dropdown.getState('hidden') // true
+
+
+### Methods
+
+* **getState** _(stateName)_ returns the state's current value.
+
+* **setState** _(stateName, stateValue)_ sets the state's value.
+
+* **toggleState** _(stateName, [switch])_ toggles the state's value, with an optional switch value to toggle to.
+
+* **onState** _(stateName, stateValue, callback, context)_ binds an event handler to whenever a state changes to the given `stateValue`. This eliminates the need to bind to all changes and have switches on the value the state changed to.
+
+* **onceState** _(stateName, stateValue, callback, context)_ same as `onState`, but will only ever be called-back once before the handler is unbound.
+
+
+### Events
+
+Whenever a state is changed, two events are fired that you can listen for:
+
+* `change:state:STATE_NAME` : this, stateValue
+* `change:state` : this, stateName, stateValue
