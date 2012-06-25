@@ -2,9 +2,8 @@
 
 (function () {
 
-    var StateView = Backbone.View.extend({
-        states : ['rendered', 'disabled', 'hidden']
-    });
+    var StateView = Backbone.View.extend();
+    Backbone.mixin.state.call(StateView, ['rendered', 'disabled', 'hidden']);
 
     suite('backbone-state');
     beforeEach(function () {
