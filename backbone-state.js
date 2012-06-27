@@ -8,7 +8,7 @@
   // AMD
   /*global define */
   if (typeof define === 'function' && define.amd) {
-    define(function() { factory(root); });
+    define(function() { return factory(root); });
   }
   // Browser globals
   else {
