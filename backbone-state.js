@@ -22,12 +22,18 @@
     states || (states = []);
 
     // Augmented `_configure` to call `_configureStates`.
-    var __configure = this.prototype._configure;
-    this.prototype._configure = function (options) {
-      var returned = __configure.apply(this, arguments);
-      this._configureStates(this.states || [], options);
-      return returned;
-    };
+    var _configure = this.prototype._configure;
+    if (this.prototype._previousAttributes || this.prototype._prepareModel) {
+      this.prototype._configure = function (arg, options) {
+        _configure.apply(this, arguments);
+        this._configureStates(this.states || [], options);
+      };
+    } else {
+      this.prototype._configure = function (options) {
+        _configure.apply(this, arguments);
+        this._configureStates(this.states || [], options);
+      };
+    }
 
     // Setup `this.state` to store state values, and grab apply any initial state values passed in as options.
     this.prototype._configureStates = function (states, options) {
