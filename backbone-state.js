@@ -3,22 +3,12 @@
 //     by Ian Storm Taylor
 //     https://github.com/ianstormtaylor/backbone-state
 
-;(function (root, factory) {
-  // Set up appropriately for the environment.
-  // AMD
-  /*global define */
-  if (typeof define === 'function' && define.amd) {
-    define(function() { return factory(root); });
-  }
-  // Browser globals
-  else {
-    if (root.Backbone === undefined) throw new Error('Couldn\'t find Backbone');
-    root.Backbone.mixin || (root.Backbone.mixin = {});
-    root.Backbone.mixin.state = factory(root);
-  }
-})(this, function (root) {
+;(function (_, Backbone) {
+  if (_ === undefined) throw new Error('Couldn\'t find Underscore');
+  if (Backbone === undefined) throw new Error('Couldn\'t find Backbone');
 
-  var backboneState = function () {
+  Backbone.mixin || (Backbone.mixin = {});
+  Backbone.mixin.state = function () {
 
     // Augmented `_configure` to call `_configureStates`.
     var _configure = this.prototype._configure;
@@ -106,6 +96,4 @@
       return this;
     };
   };
-
-  return backboneState;
-});
+}(_, Backbone));
