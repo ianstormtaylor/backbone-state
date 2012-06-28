@@ -18,8 +18,7 @@
   }
 })(this, function (root) {
 
-  var backboneState = function (states) {
-    states || (states = []);
+  var backboneState = function () {
 
     // Augmented `_configure` to call `_configureStates`.
     var _configure = this.prototype._configure;
@@ -42,19 +41,6 @@
         this.state[state] = options[state] === true;
       }
     };
-
-
-    // States
-    // ------
-
-    // The states array holds the names of states you want to enable on your view. There aren't any defined by default, but yours might look like this:
-    //
-    //     states : [
-    //         'disabled',
-    //         'hidden',
-    //         'rendered'
-    //     ],
-    this.prototype.states = states;
 
 
     // Getters + Setters
