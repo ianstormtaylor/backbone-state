@@ -5,13 +5,21 @@
     var StateView = Backbone.View.extend({
         states : ['rendered', 'disabled', 'hidden']
     });
-    Backbone.mixin.state.call(StateView);
+    Backbone.mixin.state.apply(StateView);
+
+    var StateModel = Backbone.Model.extend({
+        states : ['synced']
+    });
+    Backbone.mixin.state.apply(StateModel);
 
     suite('backbone-state');
     beforeEach(function () {
         this.view = new StateView({
             disabled : true,
             hidden   : 'asd'
+        });
+        this.model = new StateModel({
+            synced : true
         });
     });
 
@@ -47,12 +55,6 @@
         this.view.toggleState('rendered');
         expect(this.view.getState('rendered')).to.be.true;
         this.view.toggleState('rendered');
-        expect(this.view.getState('rendered')).to.be.false;
-    });
-
-    test('should be able to toggle a states value with a switch', function () {
-        expect(this.view.getState('rendered')).to.be.false;
-        this.view.toggleState('rendered', false);
         expect(this.view.getState('rendered')).to.be.false;
     });
 

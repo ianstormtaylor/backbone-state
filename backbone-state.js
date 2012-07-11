@@ -8,7 +8,7 @@
   if (Backbone === undefined) throw new Error('Couldn\'t find Backbone');
 
   Backbone.mixin || (Backbone.mixin = {});
-  Backbone.mixin.state = function () {
+  Backbone.mixin.state = function (Class) {
 
     // Augmented `_configure` to call `_configureStates`.
     var _configure = this.prototype._configure;
@@ -24,7 +24,8 @@
       };
     }
 
-    // Setup `this.state` to store state values, and grab apply any initial state values passed in as options.
+    // Setup `this.state` to store state values, and grab apply any initial
+    // state values passed in as options.
     this.prototype._configureStates = function (states, options) {
       this.state = {};
       for (var i = 0, state; state = states[i]; i++) {
@@ -41,25 +42,21 @@
       return this.state[state];
     };
 
-    // Sets a view's state and tries to update its `$el`'s classes/attributes with the jQuery-State plugin if it's available.
+    // Sets a view's state and tries to update its `$el`'s classes/attributes
+    // with the jQuery-State plugin if it's available. Triggers two events, so
+    // that you can either listen for `change:state` and receive the state's
+    // name and value or for `change:state:hidden` and just receive its value.
     this.prototype.setState = function (state, value) {
-      // Don't do anything if we're already in the right state.
       if (this.state[state] === value) return this;
-
       this.state[state] = value;
-
-      // If jQuery-State plugin: use it to reflect the state in the DOM.
-      if (this.$el.state) this.$el.state(state, value);
-
-      // Trigger two events, so that you can either listen for `change:state` and receive the state's name and value or listen for `change:state:hidden` and just receive its value.
+      if (this.$el && this.$el.state) this.$el.state(state, value);
       this.trigger('change:state:'+state, this, value);
       this.trigger('change:state', this, state, value);
     };
 
     // Shortcut for toggling a view's state.
     this.prototype.toggleState = function (state, toggle) {
-      if (toggle !== undefined) return this.setState(state, toggle);
-      else return this.setState(state, !this.getState(state));
+      return this.setState(state, !this.getState(state));
     };
 
 
