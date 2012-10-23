@@ -15,12 +15,12 @@
     if (this.prototype._previousAttributes || this.prototype._prepareModel) {
       this.prototype._configure = function (arg, options) {
         _configure.apply(this, arguments);
-        this._configureStates(this.states || [], options);
+        this._configureStates(this.states || [], options || {});
       };
     } else {
       this.prototype._configure = function (options) {
         _configure.apply(this, arguments);
-        this._configureStates(this.states || [], this.options);
+        this._configureStates(this.states || [], this.options || {});
       };
     }
 
