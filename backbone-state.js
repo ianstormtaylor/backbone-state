@@ -20,7 +20,7 @@
     } else {
       this.prototype._configure = function (options) {
         _configure.apply(this, arguments);
-        this._configureStates(this.states || [], options);
+        this._configureStates(this.states || [], this.options);
       };
     }
 
