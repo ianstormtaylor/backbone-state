@@ -27,6 +27,7 @@
     // Setup `this.state` to store state values, and grab apply any initial
     // state values passed in as options.
     this.prototype._configureStates = function (states, options) {
+      if (_.isFunction(options)) options = options();
       this.state = {};
       for (var i = 0, state; state = states[i]; i++) {
         this.state[state] = options[state] === true;
