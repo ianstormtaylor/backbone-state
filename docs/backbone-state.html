@@ -1,57 +1,254 @@
-<!DOCTYPE html>  <html> <head>   <title>backbone-state.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               backbone-state.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <pre><code>Backbone State 0.0.1
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>backbone-state.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>backbone-state.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <pre><code>Backbone State 0.0.1
 
 by Ian Storm Taylor
-https://github.com/ianstormtaylor/backbone-state
-</code></pre>             </td>             <td class="code">               <div class="highlight"><pre><span class="p">;(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">Backbone</span><span class="p">)</span> <span class="p">{</span>
-<span class="cm">/*global Backbone, _ */</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>Extending the original Backbone.View to support inheritance.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="kd">var</span> <span class="nx">_View</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">;</span>
-<span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span> <span class="o">=</span> <span class="nx">_View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Augmented <code>_configure</code> to setup <code>this.state</code> to hold the states defined in <code>this.states</code>, and retrieve initial state values from <code>this.options</code>.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">_configure</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">_View</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_configure</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">_configureStates</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">states</span> <span class="o">||</span> <span class="p">[],</span> <span class="nx">options</span><span class="p">);</span>
-  <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>Setup <code>this.state</code> to store state values, and grab apply any initial state values passed in as options.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">_configureStates</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">states</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{};</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">state</span><span class="p">;</span> <span class="nx">state</span> <span class="o">=</span> <span class="nx">states</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">[</span><span class="nx">state</span><span class="p">]</span> <span class="o">=</span> <span class="nx">options</span><span class="p">[</span><span class="nx">state</span><span class="p">]</span> <span class="o">===</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <h2>States</h2>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <p>The states array holds the names of states you want to enable on your view. There are any defined by default, but yours might look like this:</p>
+https://github.com/ianstormtaylor/backbone-state</code></pre>
 
-<pre><code>states : [
-    'disabled',
-    'hidden',
-    'rendered'
-],
-</code></pre>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">states</span> <span class="o">:</span> <span class="p">[],</span></pre></div>             </td>           </tr>                               <tr id="section-7">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-7">&#182;</a>               </div>               <h2>Getters + Setters</h2>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-8">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-8">&#182;</a>               </div>               <p>Retrive the view's current state.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">getState</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">[</span><span class="nx">state</span><span class="p">];</span>
-  <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-9">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-9">&#182;</a>               </div>               <p>Sets a view's state and tries to update its <code>$el</code>'s classes/attributes with the jQuery-State plugin if it's available.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">setState</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-10">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-10">&#182;</a>               </div>               <p>Don't do anything if we're already in the right state.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">[</span><span class="nx">state</span><span class="p">]</span> <span class="o">===</span> <span class="nx">value</span><span class="p">)</span> <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>;(<span class="function"><span class="keyword">function</span> <span class="params">(_, Backbone)</span> {</span>
+  <span class="keyword">if</span> (_ === <span class="literal">undefined</span>) <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'Couldn\'t find Underscore'</span>);
+  <span class="keyword">if</span> (Backbone === <span class="literal">undefined</span>) <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'Couldn\'t find Backbone'</span>);
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">[</span><span class="nx">state</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span></pre></div>             </td>           </tr>                               <tr id="section-11">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-11">&#182;</a>               </div>               <p>If jQuery-State plugin: use it to reflect the state in the DOM.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">state</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">state</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span></pre></div>             </td>           </tr>                               <tr id="section-12">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-12">&#182;</a>               </div>               <p>Trigger two events, so that you can either listen for <code>change:state</code> and receive the state's name and value or listen for <code>change:state:hidden</code> and just receive its value.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;change:state:&#39;</span><span class="o">+</span><span class="nx">state</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;change:state&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">state</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
-  <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-13">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-13">&#182;</a>               </div>               <p>Shortcut for toggling a view's state.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">toggleState</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">toggle</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">toggle</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">toggle</span><span class="p">);</span>
-    <span class="k">else</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">getState</span><span class="p">(</span><span class="nx">state</span><span class="p">));</span>
-  <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-14">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-14">&#182;</a>               </div>               <h2>Helpers</h2>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-15">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-15">&#182;</a>               </div>               <p>Bind to whenever an view's state changes to a particular boolean value.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">onState</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-16">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-16">&#182;</a>               </div>               <p>Callback right away if its in the right state already.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">current</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getState</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">current</span> <span class="o">===</span> <span class="nx">value</span><span class="p">)</span> <span class="nx">callback</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">current</span><span class="p">);</span>
+  Backbone.mixin || (Backbone.mixin = {});
+  Backbone.mixin.state = <span class="function"><span class="keyword">function</span> <span class="params">(Class)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Augmented <code>_configure</code> to call <code>_configureStates</code>.</p>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;change:state:&#39;</span><span class="o">+</span><span class="nx">state</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">view</span><span class="p">,</span> <span class="nx">stateValue</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">stateValue</span> <span class="o">===</span> <span class="nx">value</span><span class="p">)</span> <span class="nx">callback</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
-  <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-17">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-17">&#182;</a>               </div>               <p>Same as <code>onState</code>, but only ever fires the callback once.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">onceState</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-18">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-18">&#182;</a>               </div>               <p>Callback right away if its in the right state already.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">current</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getState</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">current</span> <span class="o">===</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">callback</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">current</span><span class="p">);</span>
-      <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
-    <span class="p">}</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">var</span> _configure = <span class="keyword">this</span>.prototype._configure;
+    <span class="keyword">if</span> (<span class="keyword">this</span>.prototype._previousAttributes || <span class="keyword">this</span>.prototype._prepareModel) {
+      <span class="keyword">this</span>.prototype._configure = <span class="function"><span class="keyword">function</span> <span class="params">(arg, options)</span> {</span>
+        _configure.apply(<span class="keyword">this</span>, arguments);
+        <span class="keyword">this</span>._configureStates(<span class="keyword">this</span>.states || [], options || {});
+      };
+    } <span class="keyword">else</span> {
+      <span class="keyword">this</span>.prototype._configure = <span class="function"><span class="keyword">function</span> <span class="params">(options)</span> {</span>
+        _configure.apply(<span class="keyword">this</span>, arguments);
+        <span class="keyword">this</span>._configureStates(<span class="keyword">this</span>.states || [], <span class="keyword">this</span>.options || {});
+      };
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Setup <code>this._state</code> to store state values, and grab apply any initial
+state values passed in as options.</p>
 
-    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">onceCallback</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">stateValue</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">self</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;change:state:&#39;</span><span class="o">+</span><span class="nx">state</span><span class="p">,</span> <span class="nx">onceCallback</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">stateValue</span> <span class="o">===</span> <span class="nx">value</span><span class="p">)</span> <span class="nx">callback</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-    <span class="p">};</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;change:state:&#39;</span><span class="o">+</span><span class="nx">state</span><span class="p">,</span> <span class="nx">onceCallback</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
-  <span class="p">}</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">this</span>.prototype._configureStates = <span class="function"><span class="keyword">function</span> <span class="params">(states, options)</span> {</span>
+      <span class="keyword">if</span> (_.isFunction(options)) options = options();
+      <span class="keyword">this</span>._state = {};
+      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, state; state = states[i]; i++) {
+        <span class="keyword">this</span>._state[state] = options[state] === <span class="literal">true</span>;
+      }
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h2>Combined: Getters + Setters</h2>
 
-<span class="p">});</span>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>syntax: state(state)
+Retrive the view&#39;s current state.</p>
+<p>syntax: state(state, value)
+Sets a view&#39;s state and tries to update its <code>$el</code>&#39;s classes/attributes
+with the jQuery-State plugin if it&#39;s available. Triggers two events, so
+that you can either listen for <code>change:state</code> and receive the state&#39;s
+name and value or for <code>change:state:hidden</code> and just receive its value.</p>
 
-<span class="p">}(</span><span class="nx">Backbone</span><span class="p">));</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">this</span>.prototype.state = <span class="function"><span class="keyword">function</span> <span class="params">(state, value)</span> {</span>
+      <span class="keyword">if</span>(arguments.length &gt; <span class="number">1</span>){
+        <span class="keyword">if</span> (<span class="keyword">this</span>._state[state] === value) <span class="keyword">return</span> <span class="keyword">this</span>;
+        <span class="keyword">this</span>._state[state] = value;
+        <span class="keyword">if</span> (<span class="keyword">this</span>.$el &amp;&amp; <span class="keyword">this</span>.$el.state) <span class="keyword">this</span>.$el.state(state, value);
+        <span class="keyword">this</span>.trigger(<span class="string">'change:state:'</span>+state, <span class="keyword">this</span>, value);
+        <span class="keyword">this</span>.trigger(<span class="string">'change:state'</span>, <span class="keyword">this</span>, state, value);
+      } <span class="keyword">else</span> {
+        <span class="keyword">return</span> <span class="keyword">this</span>._state[state];
+      }
+    
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Shortcut for toggling a view&#39;s state.</p>
 
-</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">this</span>.prototype.toggleState = <span class="function"><span class="keyword">function</span> <span class="params">(state, toggle)</span> {</span>
+      <span class="keyword">return</span> <span class="keyword">this</span>.state(state, !<span class="keyword">this</span>.state(state));
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h2>Helpers</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Bind to whenever an view&#39;s state changes to a particular boolean value.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">this</span>.prototype.onState = <span class="function"><span class="keyword">function</span> <span class="params">(state, value, callback, context)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Callback right away if its in the right state already.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="keyword">var</span> current = <span class="keyword">this</span>.state(state);
+      <span class="keyword">if</span> (current === value) callback.call(context, <span class="keyword">this</span>, current);
+
+      <span class="keyword">this</span>.on(<span class="string">'change:state:'</span>+state, <span class="function"><span class="keyword">function</span> <span class="params">(view, stateValue)</span> {</span>
+        <span class="keyword">if</span> (stateValue === value) callback.apply(context, arguments);
+      });
+      <span class="keyword">return</span> <span class="keyword">this</span>;
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Same as <code>onState</code>, but only ever fires the callback once.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">this</span>.prototype.onceState = <span class="function"><span class="keyword">function</span> <span class="params">(state, value, callback, context)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Callback right away if its in the right state already.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="keyword">var</span> current = <span class="keyword">this</span>.state(state);
+      <span class="keyword">if</span> (current === value) {
+        callback.call(context, <span class="keyword">this</span>, current);
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+      }
+
+      <span class="keyword">var</span> self = <span class="keyword">this</span>;
+      <span class="keyword">var</span> onceCallback = <span class="function"><span class="keyword">function</span> <span class="params">(self, stateValue)</span> {</span>
+        self.off(<span class="string">'change:state:'</span>+state, onceCallback, context);
+        <span class="keyword">if</span> (stateValue === value) callback.apply(context, arguments);
+      };
+      <span class="keyword">this</span>.on(<span class="string">'change:state:'</span>+state, onceCallback, context);
+      <span class="keyword">return</span> <span class="keyword">this</span>;
+    };
+  };
+}(_, Backbone));</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
